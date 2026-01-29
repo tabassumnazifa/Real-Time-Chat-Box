@@ -1,34 +1,55 @@
 # 💬 Amigoz – Real-Time Chat Application
 
 Amigoz is a real-time web-based chat application built using **ASP.NET Core MVC**, **SignalR**, and **ASP.NET Identity**.  
-It allows authenticated users to communicate instantly through a secure and responsive chat interface.
+It allows authenticated users to communicate instantly in a shared chat room with messages delivered in real time.
 
 ---
 
-## 📌 Features
+## 🚀 Features
 
-- 🔐 User authentication (Register & Login)
-- 💬 Real-time messaging using SignalR
-- 🧠 Displays sender username with each message
-- 🗄️ Messages stored in database using Entity Framework Core
-- 🎨 Clean and responsive UI using Bootstrap
-- 🚫 Unauthorized users cannot access the chat page
-
----
-
-## 🏗️ Technologies Used
-
-- ASP.NET Core MVC
-- SignalR
-- ASP.NET Core Identity
-- Entity Framework Core
-- SQL Server / LocalDB
-- Bootstrap 5
-- JavaScript
-- HTML & CSS
+- 🔐 User Authentication (Register / Login / Logout)
+- 💬 Real-time chat using **SignalR**
+- 🧑 Username-based messaging
+- ⚡ Instant message broadcasting to all connected users
+- 🗄️ Messages stored in database
+- 🎨 Clean and responsive UI with Bootstrap
+- 🔒 Chat access restricted to logged-in users
 
 ---
 
-## 📂 Project Structure
+## 🛠️ Technologies Used
 
+- **ASP.NET Core MVC**
+- **SignalR**
+- **ASP.NET Core Identity**
+- **Entity Framework Core**
+- **SQL Server**
+- **Bootstrap 5**
+- **JavaScript**
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](screenshots/home.png)
+
+### 💬 Chat Page
+![Chat Page](screenshots/chat.png)
+
+> 📌 Screenshots are taken from the running application.
+
+---
+
+## 🔄 How It Works
+
+1. Users register or log in using ASP.NET Identity.
+2. After login, users can access the chat page.
+3. SignalR establishes a real-time connection with the server.
+4. Messages sent by one user are instantly broadcast to all connected users.
+5. Messages are saved in the database for persistence.
+
+---
+
+## 📂 Project Structure (Simplified)
 
