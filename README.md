@@ -32,11 +32,10 @@ It allows authenticated users to communicate instantly in a shared chat room wit
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![image alt](https://github.com/tabassumnazifa/IUBAT-CGPA-SGPA-calculator/blob/main/sg.png?raw=true)
+![image alt](https://github.com/tabassumnazifa/Real-Time-Chat-Box/blob/main/chatbox.png?raw=true)
 
 ### 💬 Chat Page
-![Chat Page](screenshots/chat.png)
-
+![image alt](https://github.com/tabassumnazifa/Real-Time-Chat-Box/blob/main/chatbox.png?raw=true)
 > 📌 Screenshots are taken from the running application.
 
 ---
