@@ -32,7 +32,7 @@ It allows authenticated users to communicate instantly in a shared chat room wit
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](screenshots/home.png)
+![image alt](https://github.com/tabassumnazifa/IUBAT-CGPA-SGPA-calculator/blob/main/sg.png?raw=true)
 
 ### 💬 Chat Page
 ![Chat Page](screenshots/chat.png)
