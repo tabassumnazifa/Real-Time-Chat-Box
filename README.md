@@ -32,7 +32,7 @@ It allows authenticated users to communicate instantly in a shared chat room wit
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![image alt](https://github.com/tabassumnazifa/Real-Time-Chat-Box/blob/main/chatbox.png?raw=true)
+![image alt](https://github.com/tabassumnazifa/Real-Time-Chat-Box/blob/main/home.png?raw=true)
 
 ### 💬 Chat Page
 ![image alt](https://github.com/tabassumnazifa/Real-Time-Chat-Box/blob/main/chatbox.png?raw=true)
