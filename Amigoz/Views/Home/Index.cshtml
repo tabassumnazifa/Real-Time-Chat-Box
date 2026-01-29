@@ -1,0 +1,170 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="container-fluid p-0 vh-100 d-flex overflow-hidden main-page-wrapper">
+
+    <div class="d-none d-lg-flex col-lg-7 flex-column justify-content-center align-items-center text-white position-relative brand-panel">
+        <div class="floating-blobs"></div>
+        <div class="position-relative z-2 text-center p-5">
+            <h1 class="display-1 fw-800 tracking-tighter mb-3">Amigoz.</h1>
+            <p class="fs-4 fw-light opacity-75">Where conversations happen in real-time.</p>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-5 d-flex align-items-center justify-content-center bg-white p-4 p-md-5">
+        <div class="auth-container w-100" style="max-width: 420px;">
+
+            <div class="text-center mb-5">
+                <div class="app-logo-gradient mb-4 mx-auto">
+                    <i class="bi bi-chat-heart-fill"></i>
+                </div>
+                <h2 class="fw-800 text-dark mb-2">Welcome Back</h2>
+                <p class="text-muted">Join the community and start chatting today.</p>
+            </div>
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <div class="user-welcome p-4 rounded-4 mb-4 text-center">
+                    <p class="mb-3 fw-600">Logged in as <span class="text-primary">@User.Identity.Name</span></p>
+                    <a asp-controller="Home" asp-action="Chat" class="btn btn-ig-action w-100 py-3 shadow-sm">
+                        Enter Chatroom <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="d-grid gap-3">
+                    <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-ig-action py-3">
+                        Log In
+                    </a>
+
+                    <div class="divider-text my-3">
+                        <span>OR</span>
+                    </div>
+
+                    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-dark py-3 fw-bold border-2">
+                        Create Account
+                    </a>
+                </div>
+            }
+
+            <div class="mt-5 text-center">
+                <p class="small text-muted mb-0">From</p>
+                <p class="fw-bold tracking-widest text-uppercase small" style="letter-spacing: 2px;">AMIGOZ LABS</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --ig-gradient: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        --inter: 'Inter', sans-serif;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: var(--inter);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .fw-800 {
+        font-weight: 800;
+    }
+
+    .fw-600 {
+        font-weight: 600;
+    }
+
+    .tracking-tighter {
+        letter-spacing: -3px;
+    }
+
+    /* Left Panel Styling */
+    .brand-panel {
+        background: var(--ig-gradient);
+        overflow: hidden;
+    }
+
+    /* Animated background elements for that "premium" feel */
+    .floating-blobs {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url('https://www.transparenttextures.com/patterns/cubes.png');
+        opacity: 0.1;
+    }
+
+    /* Logo Icon Styling */
+    .app-logo-gradient {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        background: var(--ig-gradient);
+        color: white;
+        border-radius: 22px; /* Super-ellipse shape like iOS/IG icons */
+        transform: rotate(-5deg);
+        box-shadow: 0 15px 30px rgba(214, 36, 159, 0.3);
+    }
+
+    /* Button Styling */
+    .btn-ig-action {
+        background: #0095f6;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+
+        .btn-ig-action:hover {
+            background: #1877f2;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            color: white;
+        }
+
+    /* Divider */
+    .divider-text {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #8e8e8e;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+        .divider-text::before, .divider-text::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .divider-text:not(:empty)::before {
+            margin-right: .75em;
+        }
+
+        .divider-text:not(:empty)::after {
+            margin-left: .75em;
+        }
+
+    .user-welcome {
+        background: #fafafa;
+        border: 1px solid #dbdbdb;
+    }
+
+    /* Responsive tweaks */
+    @@media (max-width: 991px) {
+        .main-page-wrapper {
+            background: #ffffff;
+        }
+    }
+</style>

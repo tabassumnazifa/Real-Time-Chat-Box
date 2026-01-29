@@ -1,0 +1,236 @@
+﻿@model IEnumerable<Amigoz.Models.Message>
+@{
+    ViewData["Title"] = "Chat";
+}
+
+<div class="chat-wrapper">
+    <div class="chat-card border-0 shadow-lg">
+        <div class="chat-header p-3 border-bottom d-flex align-items-center bg-white justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="avatar-ring me-3">
+                    <div class="avatar-white-inner">
+                        <i class="bi bi-chat-heart-fill"></i>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="mb-0 fw-bold">Amigoz Global Room</h6>
+                    <small class="text-success fw-600"><i class="bi bi-circle-fill" style="font-size: 8px;"></i> Active Now</small>
+                </div>
+            </div>
+            <div class="text-muted pe-2">
+                <i class="bi bi-info-circle fs-5 cursor-pointer"></i>
+            </div>
+        </div>
+
+        <div id="chat" class="chat-body p-4 bg-light-gray">
+            @if (Model != null)
+            {
+                foreach (var m in Model)
+                {
+                    var currentUserName = User.Identity?.Name ?? "";
+                    var isMe = string.Equals(m.Username, currentUserName, StringComparison.OrdinalIgnoreCase);
+
+                    <div class="message-item @(isMe ? "sent" : "received")">
+                        <div class="msg-card">
+                            <div class="msg-header">
+                                <span class="sender-name">@(m.Username ?? "Unknown")</span>
+                                @if (isMe)
+                                {
+                                    <span class="badge-you">You</span>
+                                }
+                            </div>
+                            <div class="msg-content">@(m.Text ?? "")</div>
+                            <div class="msg-footer">
+                                <span>@m.SentAt.ToLocalTime().ToString("hh:mm tt")</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="chat-footer p-3 bg-white border-top">
+            <div class="ig-input-group px-3">
+                <i class="bi bi-emoji-smile fs-5 text-muted"></i>
+                <input type="text" id="messageText" placeholder="Write a message..." autocomplete="off" class="mx-2" />
+                <button id="submitButton" class="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --ig-blue: #0095f6;
+        --ig-border: #dbdbdb;
+        --ig-bg: #fafafa;
+    }
+
+    .bg-light-gray {
+        background-color: #f8f9fa;
+    }
+
+    .fw-600 {
+        font-weight: 600;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .chat-wrapper {
+        height: calc(100vh - 120px);
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    }
+
+    .chat-card {
+        width: 100%;
+        max-width: 800px;
+        height: 100%;
+        background: #fff;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .chat-body {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px; /* Space between each separate box */
+    }
+
+    /* THE SEPARATE BOX DESIGN */
+    .message-item {
+        display: flex;
+        width: 100%;
+    }
+
+    .msg-card {
+        background: #ffffff;
+        border: 1px solid var(--ig-border);
+        border-radius: 12px;
+        padding: 12px 16px;
+        width: 100%; /* Broad look */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .msg-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #c0c0c0;
+        }
+
+    /* Highlight for "Sent" boxes */
+    .message-item.sent .msg-card {
+        border-left: 5px solid var(--ig-blue);
+        background-color: #f0f9ff;
+    }
+
+    .msg-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .sender-name {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: #262626;
+    }
+
+    .badge-you {
+        font-size: 10px;
+        background: var(--ig-blue);
+        color: white;
+        padding: 1px 6px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .msg-content {
+        font-size: 0.95rem;
+        color: #444;
+        line-height: 1.5;
+        word-wrap: break-word;
+    }
+
+    .msg-footer {
+        font-size: 11px;
+        color: #8e8e8e;
+        margin-top: 8px;
+        text-align: right;
+    }
+
+    /* Header Accent */
+    .avatar-ring {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        border-radius: 50%;
+        padding: 2px;
+    }
+
+    .avatar-white-inner {
+        background: white;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #cc2366;
+        font-size: 1.2rem;
+    }
+
+    /* Input Group Styling */
+    .ig-input-group {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid var(--ig-border);
+        border-radius: 25px;
+        padding: 5px 15px;
+    }
+
+        .ig-input-group input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 8px;
+            font-size: 0.95rem;
+        }
+
+    .send-btn {
+        background: none;
+        border: none;
+        color: var(--ig-blue);
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+        .send-btn:hover {
+            color: #00376b;
+        }
+</style>
+
+@section Scripts {
+    <script>
+        window.chatUsername = '@Html.Raw(User.Identity?.Name ?? "Anonymous")';
+    </script>
+    <script src="~/css/signalr/signalr.js"></script>
+    <script src="~/css/js/chat.js"></script>
+    <script>
+        // Auto-scroll to bottom on load
+        const chatWindow = document.getElementById('chat');
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    </script>
+}
